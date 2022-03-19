@@ -1,0 +1,24 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ariel-Marcelo/To-Do-List.git"
+  },
+  "keywords": [
+    "list",
+    "to-do",
+    "ToDo"
+  ],
+  "author": "Ariel Pillajo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ariel-Marcelo/To-Do-List/issues"
+  },
+  "homepage": "https://github.com/Ariel-Marcelo/To-Do-List#readme"
+}

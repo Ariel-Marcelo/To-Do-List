@@ -1,12 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ToDo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: grid;
+            place-items: center;
+            
+
+            height: 100vh;
+        } 
+
+        .to-do-list--container {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            box-sizing: border-box;
+            gap: 20px;
+
+            padding: 0 20px;
+            height: 75vh;
+            width: 450px;
+            border: solid 1px #CCD1D1;
+            border-radius: 10px;
+
+            background-color: #E5E8E8;
+        }
+        .to-do-list__nav {
+            box-sizing: border-box;
+            border: solid 1px #CCD1D1;
+
+            
+            border-radius: 10px;
+            overflow: auto;
+            background-color: azure;
+
+        }
+
+        .to-do-list__card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: solid 4px #CCD1D1;
+
+            padding: 0 20px;
+            height: 100px;
+        }
+
+        .to-do-list--options button {
+            height: 30px;
+        }
+
+    </style>
 </head>
 <body>
-    Hello world
+    <Main class="to-do-list">
+        <div class="to-do-list--container">
+            <h1>My To-Do List</h1>
+            <nav class="to-do-list__nav">
+                <div class="to-do-list__card">
+                    <p>Title of my Task</p>
+                    <div class="to-do-list--options">
+                        <button>Overwrite</button>
+                        <button>Delete</button> 
+                    </div>
+                </div>
+                <div class="to-do-list__card">
+                    <p>Title of my Task</p>
+                </div>
+                <div class="to-do-list__card">
+                    <p>Title of my Task</p>
+                </div>
+                <!-- https://www.youtube.com/watch?v=-rNQeJi3Wp4 -->
+            </nav>
+        </div>
+    </Main>
 </body>
+
 </html>
