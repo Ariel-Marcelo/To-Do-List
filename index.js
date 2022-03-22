@@ -9,6 +9,9 @@ document.getElementById('save-task').addEventListener( "click",function (e) {
     const ui = new UI();
     ui.addTask(task)
 
+    const exitButton = document.getElementById('exit-button');
+    exitButton.click();
+    
     e.preventDefault;
 });
 
@@ -33,4 +36,5 @@ document.getElementById('to-do-list').addEventListener("click", function(e){
         }
             
     }
+
 });
