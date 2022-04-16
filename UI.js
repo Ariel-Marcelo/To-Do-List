@@ -1,3 +1,5 @@
+import User from "./User.js";
+const user = User.createUser();
 class UI {
     
     addTask (task) {
@@ -44,22 +46,25 @@ class UI {
             </button>
             </div>
         `;
-        console.log(element)
 
         task_list.appendChild(element);
     }
     
     showMessage(message){
-        const element =  createElement('div');
+        
     }
 
     deleteTask(button){
-        button.parentElement.parentElement.remove()
-        this.showMessage("Task Deleted");
+        const taskName =  button.parentElement.parentElement.firstElementChild.innerText;
+        user.deleteTask(taskName);
+        button.parentElement.parentElement.remove();
     }
 
     rewriteTask(button){
 
+    
+       this.deleteTask(button);
+       this.addTask();
     }
 
 }
