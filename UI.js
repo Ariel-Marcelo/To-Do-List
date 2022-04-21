@@ -61,10 +61,7 @@ class UI {
     }
 
     rewriteTask(button){
-
-    
-       this.deleteTask(button);
-       this.addTask();
+        document.getElementById("btn-update-new-task").click();
     }
 
 }
