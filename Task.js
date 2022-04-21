@@ -1,6 +1,8 @@
 class Task {
-    constructor (name) {
+    constructor (name, description) {
         this.name = name;
+        this.description = description;
+        this.id = Math.random();
     }
 }
 

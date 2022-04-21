@@ -26,7 +26,7 @@
       main {
         display: grid;
         place-items: center;
-        
+
         height: 100vh;
       }
 
@@ -68,7 +68,7 @@
       }
 
       .to-do-list__card p {
-          margin-bottom: 0;
+        margin-bottom: 0;
       }
 
       .to-do-list--options button {
@@ -117,14 +117,11 @@
         .to-do-list--options button {
           height: 25px;
         }
-
-
       }
     </style>
   </head>
   <body>
-    <main class="to-do-list" >
-      
+    <main class="to-do-list">
       <div class="to-do-list--container">
         <button
           id="btn-add-new-task"
@@ -136,7 +133,17 @@
         >
           +
         </button>
-        
+        <button
+          id="btn-update-new-task"
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@fat"
+          style = "display: none;"
+        >
+          Update
+        </button>
         <h1>My To-Do List</h1>
         <nav class="to-do-list__nav" id="to-do-list"></nav>
         <div
@@ -156,7 +163,7 @@
                   class="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                > </button>
+                ></button>
               </div>
               <div class="modal-body">
                 <form>
@@ -203,7 +210,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    
-
   </body>
 </html>
