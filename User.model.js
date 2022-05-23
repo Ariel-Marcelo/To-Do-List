@@ -1,12 +1,11 @@
-import Task from "./Task.js";
-
 class User {
   static user = null;
 
   constructor() {
       this.name = "Paco";
       this.lastName = "Chicaiza";
-      this.taskList = [];
+      this.taskList = JSON.parse(localStorage.getItem('todoList')) || [];
+
   }
 
   static createUser() {
@@ -18,8 +17,14 @@ class User {
   }
 
   createTask({ name, description }) {
-    const task = new Task(name, description);
+    const task = {
+      name:  name,
+      description: description,
+      id: Math.random(),
+    }
     this.taskList.push(task);
+    this.save();
+    return Object.assign({}, task);
   }
 
   finalTask() {
@@ -31,13 +36,18 @@ class User {
     this.taskList[index] = {...this.taskList[index], ...changes};
   }
 
-  deleteTask(name) {
-    const index = this.taskList.findIndex(task => task.name === name);
+  deleteTask(id) {
+    const index = this.taskList.findIndex(task => task.id == id);
     this.taskList.splice(index, 1);
+    this.save();
   }
 
   getAllTasks() {
     return this.taskList;
+  }
+
+  save() {
+    localStorage.setItem('todoList', JSON.stringify(this.taskList));
   }
 
 }
