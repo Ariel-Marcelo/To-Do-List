@@ -2,29 +2,50 @@ import User from "./User.model.js";
 
 class UI {
   constructor() {
-
     this.user = User.createUser();
     // charge ui tasks
-    const todoList = this.user.getAllTasks()
+    const todoList = this.user.getAllTasks();
     for (const todo of todoList) {
-        this.addTask(todo);
+      this.addTask(todo);
     }
-    // evento al clickar en el boton de salvar tarea
+    // evento al dar click en el boton de salvar tarea
     const btSaveTask = document.getElementById("save-task");
     btSaveTask.addEventListener("click", () => this.saveTask());
-    // evento al clickar en el boton de eliminar tarea
+    // Guarda el id del ultimo elemento en actualizarse
+    this.id = null;
+    // evento al dar click  en la lista de tareas
     const task_list = document.getElementById("to-do-list");
     task_list.addEventListener("click", (e) => this.crudOperations(e));
+    this.incremental = 0;
+
+    const btUpdateTask = document.getElementById("update-task");
+    btUpdateTask.addEventListener("click", (e) => this.updateMyTask(e));
+  }
+
+  updateMyTask(e) {
+    // se obtiene la nueva información a actualizar
+    const name = document.getElementById("recipient-name-update").value;
+    const description = document.getElementById("message-text-update").value;
+    // le solicito al usuario guardar los cambios
+    this.user.updateTask(this.id, {name, description});
+    // actualizo el hml
+    document.getElementById(this.id).children[0].innerHTML = name;
+    // cierro el modal
+    document.getElementById("exit-button-update").click();
   }
 
   saveTask() {
     // se obtiene el name y la description del modal desplegado
     const name = document.getElementById("recipient-name").value;
     const description = document.getElementById("message-text").value;
-    // Como usuario debo primero crear una tarea
-    const taskCreated = this.user.createTask({ name: name, description: description });
-    this.addTask(taskCreated);
 
+    // Como usuario debo primero crear una tarea
+    const taskCreated = this.user.createTask({
+      name: name,
+      description: description,
+    });
+    this.addTask(taskCreated);
+    // cierro el modal
     document.getElementById("exit-button").click();
   }
 
@@ -55,11 +76,16 @@ class UI {
     const task_list = document.getElementById("to-do-list");
     const element = document.createElement("div");
     element.className = "to-do-list__card";
-    element.setAttribute = "id=" + task.id;
+    element.setAttribute("id", task.id);
+    element.dataset.id = task.id;
     element.innerHTML = `
             <p>${task.name}</p>
             <div class="to-do-list--options">
-            <button id="rewrite" type="button">
+            <button id="rewrite" type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal4"
+            data-bs-whatever="@getbootstrap">
                 <svg
                 
                 xmlns="http://www.w3.org/2000/svg"
@@ -96,20 +122,21 @@ class UI {
             </button>
             </div>
         `;
-
     task_list.appendChild(element);
   }
 
-  showMessage(message) {}
-
   deleteTask(button) {
-    const taskId = button.parentElement.parentElement.id;
+    const taskId = button.parentElement.parentElement.dataset.id;
     this.user.deleteTask(taskId);
     button.parentElement.parentElement.remove();
   }
 
   rewriteTask(button) {
-    document.getElementById("btn-update-new-task").click();
+    const taskId = button.parentElement.parentElement.dataset.id;
+    const task = this.user.getTask(taskId);
+    document.getElementById("recipient-name-update").value = task.name;
+    document.getElementById("message-text-update").value = task.description;
+    this.id = taskId;
   }
 }
 
